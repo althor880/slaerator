@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091125203031) do
+ActiveRecord::Schema.define(:version => 20091127035319) do
+
+  create_table "case_events", :force => true do |t|
+    t.text     "type"
+    t.text     "description"
+    t.datetime "datetime"
+    t.text     "startstatus"
+    t.text     "endstatus"
+    t.text     "startpriority"
+    t.text     "endpriority"
+    t.datetime "nextdeadline"
+    t.boolean  "slamet"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", :force => true do |t|
     t.string   "login",                              :null => false
@@ -28,6 +42,39 @@ ActiveRecord::Schema.define(:version => 20091125203031) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "queries", :force => true do |t|
+    t.date     "startdate"
+    t.date     "enddate"
+    t.boolean  "closed"
+    t.datetime "lastrun"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "queries_sf_cases", :id => false, :force => true do |t|
+    t.integer "query_id"
+    t.integer "sf_case_id"
+  end
+
+  add_index "queries_sf_cases", ["query_id"], :name => "index_queries_sf_cases_on_query_id"
+  add_index "queries_sf_cases", ["sf_case_id"], :name => "index_queries_sf_cases_on_sf_case_id"
+
+  create_table "queries_sf_record_types", :id => false, :force => true do |t|
+    t.integer "query_id"
+    t.integer "sf_record_type_id"
+  end
+
+  add_index "queries_sf_record_types", ["query_id"], :name => "index_queries_sf_record_types_on_query_id"
+  add_index "queries_sf_record_types", ["sf_record_type_id"], :name => "index_queries_sf_record_types_on_sf_record_type_id"
+
+  create_table "queries_sf_users", :id => false, :force => true do |t|
+    t.integer "query_id"
+    t.integer "sf_user_id"
+  end
+
+  add_index "queries_sf_users", ["query_id"], :name => "index_queries_sf_users_on_query_id"
+  add_index "queries_sf_users", ["sf_user_id"], :name => "index_queries_sf_users_on_sf_user_id"
 
   create_table "salesforce_case_comments", :force => true do |t|
     t.datetime "created_at"
@@ -55,6 +102,29 @@ ActiveRecord::Schema.define(:version => 20091125203031) do
   end
 
   create_table "salesforce_users", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sf_cases", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sf_record_types", :force => true do |t|
+    t.text     "name",                          :null => false
+    t.text     "sfid",                          :null => false
+    t.boolean  "active",     :default => true,  :null => false
+    t.boolean  "sla",        :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sf_users", :force => true do |t|
+    t.string   "first",      :null => false
+    t.string   "last",       :null => false
+    t.string   "sfid",       :null => false
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
