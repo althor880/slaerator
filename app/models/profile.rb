@@ -1,5 +1,6 @@
 class Profile < ActiveRecord::Base
   has_many :queries
+  has_and_belongs_to_many :roles
   acts_as_authentic do |c|
   end
   def deliver_password_reset_instructions!

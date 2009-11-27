@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091127035319) do
+ActiveRecord::Schema.define(:version => 20091127213407) do
 
   create_table "case_events", :force => true do |t|
     t.text     "type"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20091127035319) do
     t.datetime "updated_at"
   end
 
+  create_table "profiles_roles", :id => false, :force => true do |t|
+    t.integer "profile_id"
+    t.integer "role_id"
+  end
+
+  add_index "profiles_roles", ["profile_id"], :name => "index_profiles_roles_on_profile_id"
+  add_index "profiles_roles", ["role_id"], :name => "index_profiles_roles_on_role_id"
+
   create_table "queries", :force => true do |t|
     t.date     "startdate"
     t.date     "enddate"
@@ -75,6 +83,30 @@ ActiveRecord::Schema.define(:version => 20091127035319) do
 
   add_index "queries_sf_users", ["query_id"], :name => "index_queries_sf_users_on_query_id"
   add_index "queries_sf_users", ["sf_user_id"], :name => "index_queries_sf_users_on_sf_user_id"
+
+  create_table "rights", :force => true do |t|
+    t.text     "name",           :null => false
+    t.text     "description"
+    t.text     "controllername"
+    t.text     "actionname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.text     "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_rights", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "right_id"
+  end
+
+  add_index "roles_rights", ["right_id"], :name => "index_roles_rights_on_right_id"
+  add_index "roles_rights", ["role_id"], :name => "index_roles_rights_on_role_id"
 
   create_table "salesforce_case_comments", :force => true do |t|
     t.datetime "created_at"
