@@ -7,4 +7,8 @@ class Profile < ActiveRecord::Base
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
   end
+
+  def is_admin?
+    self.roles.find_by_name("Admin")
+  end
 end

@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
       @current_profile = current_profile_session && current_profile_session.profile
     end
 
+    def current_user
+      return @current_profile if defined?(@current_profile)
+      @current_profile = current_profile_session && current_profile_session.profile
+    end
+
     def require_profile
       unless current_profile
         store_location
@@ -45,7 +50,4 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
  
-    def require_rights
-      
-    end
 end

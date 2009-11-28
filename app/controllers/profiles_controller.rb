@@ -25,17 +25,19 @@ class ProfilesController < ApplicationController
     @profile = @current_profile
   end
   
-  def update
+  def update  
     @profile = @current_profile # makes our views "cleaner" and more consistent
-    if @profile.update_attributes(params[:profile])
-      flash[:notice] = "Account updated!"
-      redirect_to account_url
+    if allow? :user => :is_admin?
+      if @profile.update_attributes(params[:profile])
+        flash[:notice] = "Account updated!"
+        redirect_to account_url
+      else
+        render :action => :edit
+      end
     else
+      flash[:notice] = "Failure! You must be an admin to edit profiles!"
       render :action => :edit
     end
   end
 
-  def manage
-
-  end
 end
