@@ -4,3 +4,4 @@ log/production.log
 log/server.log
 log/test.log
 db/local_development.sqlite3
+config/initializers/site_keys.rb
