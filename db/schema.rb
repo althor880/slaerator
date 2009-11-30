@@ -139,24 +139,41 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
   end
 
   create_table "sf_cases", :force => true do |t|
+    t.string   "case_advocate_id"
+    t.string   "case_number"
+    t.string   "case_type"
+    t.datetime "sf_closed_date"
+    t.datetime "sf_created_date"
+    t.string   "description"
+    t.string   "sfid",                  :null => false
+    t.boolean  "is_closed"
+    t.datetime "sf_last_modified_date"
+    t.string   "owner_id"
+    t.string   "priority"
+    t.string   "record_type_id"
+    t.string   "status"
+    t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sf_record_types", :force => true do |t|
-    t.text     "name",                          :null => false
-    t.text     "sfid",                          :null => false
-    t.boolean  "active",     :default => true,  :null => false
-    t.boolean  "sla",        :default => false, :null => false
+    t.text     "name",                           :null => false
+    t.text     "sfid",                           :null => false
+    t.boolean  "active",      :default => true,  :null => false
+    t.boolean  "sla",         :default => false, :null => false
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sf_users", :force => true do |t|
-    t.string   "first",      :null => false
-    t.string   "last",       :null => false
-    t.string   "sfid",       :null => false
     t.string   "email"
+    t.string   "first_name"
+    t.string   "sfid",       :null => false
+    t.string   "last_name"
+    t.string   "name"
+    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
