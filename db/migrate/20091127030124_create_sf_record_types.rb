@@ -5,6 +5,7 @@ class CreateSfRecordTypes < ActiveRecord::Migration
       t.text :sfid, 		:null => false
       t.boolean :active, 	:null => false, :default => true
       t.boolean :sla, 		:null => false, :default => false
+      t.string :description
       t.timestamps
     end
   end
