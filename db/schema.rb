@@ -11,7 +11,7 @@
 
 ActiveRecord::Schema.define(:version => 20091127213407) do
 
-  create_table "case_events", :force => true do |t|
+  create_table "case_events", :primary_key => "case_event_id", :force => true do |t|
     t.text     "type"
     t.text     "description"
     t.datetime "datetime"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
     t.datetime "updated_at"
   end
 
-  create_table "profiles", :force => true do |t|
+  create_table "profiles", :primary_key => "profile_id", :force => true do |t|
     t.string   "login",                              :null => false
     t.string   "email",                              :null => false
     t.string   "crypted_password",                   :null => false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
   add_index "profiles_roles", ["profile_id"], :name => "index_profiles_roles_on_profile_id"
   add_index "profiles_roles", ["role_id"], :name => "index_profiles_roles_on_role_id"
 
-  create_table "queries", :force => true do |t|
+  create_table "queries", :primary_key => "query_id", :force => true do |t|
     t.date     "startdate"
     t.date     "enddate"
     t.boolean  "closed"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
   add_index "queries_sf_users", ["query_id"], :name => "index_queries_sf_users_on_query_id"
   add_index "queries_sf_users", ["sf_user_id"], :name => "index_queries_sf_users_on_sf_user_id"
 
-  create_table "rights", :force => true do |t|
+  create_table "rights", :primary_key => "right_id", :force => true do |t|
     t.text     "name",           :null => false
     t.text     "description"
     t.text     "controllername"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
     t.datetime "updated_at"
   end
 
-  create_table "roles", :force => true do |t|
+  create_table "roles", :primary_key => "role_id", :force => true do |t|
     t.text     "name"
     t.text     "description"
     t.datetime "created_at"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
     t.datetime "updated_at"
   end
 
-  create_table "sf_cases", :force => true do |t|
+  create_table "sf_cases", :primary_key => "sf_case_id", :force => true do |t|
     t.string   "case_advocate_id"
     t.string   "case_number"
     t.string   "case_type"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
     t.datetime "updated_at"
   end
 
-  create_table "sf_record_types", :force => true do |t|
+  create_table "sf_record_types", :primary_key => "sf_record_type_id", :force => true do |t|
     t.text     "name",                           :null => false
     t.text     "sfid",                           :null => false
     t.boolean  "active",      :default => true,  :null => false
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(:version => 20091127213407) do
     t.datetime "updated_at"
   end
 
-  create_table "sf_users", :force => true do |t|
+  create_table "sf_users", :primary_key => "sf_user_id", :force => true do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "sfid",       :null => false

@@ -1,6 +1,7 @@
 class CreateSfCases < ActiveRecord::Migration
   def self.up
-    create_table :sf_cases do |t|
+    create_table :sf_cases, :primary_key => :sf_case_id do |t|
+      t.integer :sf_case_id,		:null => false
       t.string :case_advocate_id
       t.string :case_number
       t.string :case_type

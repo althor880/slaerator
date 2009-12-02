@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :queries
+
+  map.resources :sf_record_types
+
+  map.resources :sf_users
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

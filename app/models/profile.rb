@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  set_primary_key :profile_id
   has_many :queries
   has_and_belongs_to_many :roles
   acts_as_authentic do |c|

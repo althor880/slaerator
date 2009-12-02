@@ -1,6 +1,7 @@
 class CreateSfRecordTypes < ActiveRecord::Migration
   def self.up
-    create_table :sf_record_types do |t|
+    create_table :sf_record_types, :primary_key => :sf_record_type_id do |t|
+      t.integer :sf_record_type_id, :null => false
       t.text :name, 		:null => false
       t.text :sfid, 		:null => false
       t.boolean :active, 	:null => false, :default => true

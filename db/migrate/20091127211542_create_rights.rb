@@ -1,6 +1,7 @@
 class CreateRights < ActiveRecord::Migration
   def self.up
-    create_table :rights do |t|
+    create_table :rights, :primary_key => :right_id do |t|
+      t.integer :right_id,	:null => false
       t.text :name,		:null => false
       t.text :description
       t.text :controllername

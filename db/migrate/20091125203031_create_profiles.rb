@@ -1,6 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration
   def self.up
-    create_table :profiles do |t|
+    create_table :profiles, :primary_key => :profile_id do |t|
+      t.integer   :profile_id,		:null => false
       t.string    :login,               :null => false
       t.string    :email,               :null => false
       t.string    :crypted_password,    :null => false

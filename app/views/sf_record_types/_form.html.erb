@@ -1,0 +1,28 @@
+<% form_for @sf_record_type do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :sf_record_type_id %><br />
+    <%= f.text_field :sf_record_type_id %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_area :name %>
+  </p>
+  <p>
+    <%= f.label :sfid %><br />
+    <%= f.text_area :sfid %>
+  </p>
+  <p>
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </p>
+  <p>
+    <%= f.label :sla %><br />
+    <%= f.check_box :sla %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
