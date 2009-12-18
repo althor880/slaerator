@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Login</th>
+    <th>Email</th>
+    <th>Login Count</th>
+    <th>Last Logged In</th>
+    <th>Last Login IP</th>
+  </tr>
+  <% for profile in @profiles %>
+    <tr>
+      <td><%=h profile.login %></td>
+      <td><%=h profile.email %></td>
+      <td><%=h profile.login_count %></td>
+      <td><%=h profile.last_login_at %></td>
+      <td><%=h profile.last_login_ip %></td>
+      <td><%= link_to "Show", profile %></td>
+      <td><%= link_to "Edit", edit_profile_path(profile) %></td>
+      <td><%= link_to "Destroy", profile, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
