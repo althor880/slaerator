@@ -1,8 +1,13 @@
 class ProfilesController < ApplicationController
   before_filter :require_no_profile, :only => [:new, :create]
   before_filter :require_profile, :only => [:show, :edit, :update]
-  before_filter :require_rights, :only => [:manage]
   
+  allow :index, :user => :is_admin?
+ 
+  def index
+    @profiles = Profile.all
+  end
+
   def new
     @profile = Profile.new
   end
@@ -39,5 +44,7 @@ class ProfilesController < ApplicationController
       render :action => :edit
     end
   end
+
+
 
 end
